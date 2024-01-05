@@ -15,7 +15,7 @@ async def loader_user(_ubot, user_id):
     ubot_ = Ubot(**_ubot)
     try:
         await asyncio.wait_for(ubot_.start(), timeout=90)
-        await ubot_.join_chat("kynansupport")
+        await ubot_.join_chat("Basecampsupport")
     except RPCError:
         await remove_ubot(user_id)
         await rm_all(user_id)
