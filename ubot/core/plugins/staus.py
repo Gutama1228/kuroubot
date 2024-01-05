@@ -34,7 +34,7 @@ async def profile_command(client, message):
     b = InlineKeyboardMarkup([[InlineKeyboardButton(
       text="Tutup", callback_data="0_cls")]])
     await message.reply_text(f"""
-<b>HimiUbot</b>
+<b>KuroUbot</b>
     <b>Status Ubot:</b> <code>{status2}</code>
       <b>Status Pengguna:</b> <i>{status}</i>
       <b>Prefixes :</b> <code>{prefix[0]}</code>
