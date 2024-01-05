@@ -222,9 +222,9 @@ async def bikin_ubot(client, callback_query):
     await bot_msg.edit(text_done)
     await install_my_peer(new_client)
     try:
-        await new_client.join_chat("Cleoosupport")
-        await new_client.join_chat("Clegynstore")
-        await new_client.join_chat("Allaboutcleoo")
+        await new_client.join_chat("Basecampsupport")
+        await new_client.join_chat("Basecamp_store")
+        await new_client.join_chat("gbtktl")
     except UserAlreadyParticipant:
         pass
     return await bot.send_message(
