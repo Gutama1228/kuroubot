@@ -12,19 +12,19 @@ DEVS = [
 
 KYNAN = list(map(int, os.getenv("KYNAN", "isi id kalian").split()))
 
-API_ID = int(os.getenv("API_ID", "17250424"))
+API_ID = int(os.getenv("API_ID", "api id kalian"))
 
-API_HASH = os.getenv("API_HASH", "753bc98074d420ef57ddf7eb1513162b")
+API_HASH = os.getenv("API_HASH", "api hash kalian")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "6455437707:AAEfcAzWnj4KElzbLV-8VSZbVB5CrtDeOwQ")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "bot token kalian")
 
-OWNER_ID = int(os.getenv("OWNER_ID", "482945686"))
+OWNER_ID = int(os.getenv("OWNER_ID", "id kalian"))
 
-USER_ID = list(map(int, os.getenv("USER_ID", "1054295664 876054262 793488327 5573141376 482945686").split()))
+USER_ID = list(map(int, os.getenv("USER_ID", "id kalian").split()))
 
-LOG_UBOT = int(os.getenv("LOG_UBOT", "-1001625266512"))
+LOG_UBOT = int(os.getenv("LOG_UBOT", "- id gc log")) #contoh -123456789
 
-LOG_SELLER = int(os.getenv("LOG_SELLER", "-1001916459727"))
+LOG_SELLER = int(os.getenv("LOG_SELLER", "- id gc log seller")) #contoh -123456789
 
 BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-1001608847572 -1001538826310 -1001876092598 -1001864253073 -1001451642443 -1001825363971 -1001797285258 -1001927904459 -1001287188817 -1001812143750 -1001608701614 -1001473548283 -1001861414061").split()))
 
@@ -39,5 +39,5 @@ OPENAI_KEY = os.getenv(
 
 MONGO_URL = os.getenv(
     "MONGO_URL",
-    "mongodb+srv://botsebar15:1234@cluster0.wnpxjhu.mongodb.net/?retryWrites=true&w=majority",
+    "mongo db kalian",
 )
