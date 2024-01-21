@@ -11,21 +11,21 @@ DEVS = [
 ]
 
 
-API_ID = int(os.getenv("API_ID", "api id kalian"))
+API_ID = int(os.getenv("API_ID", "28805535"))
 
-API_HASH = os.getenv("API_HASH", "api hash kalian")
+API_HASH = os.getenv("API_HASH", "25c5b085046408ee8abee7773d7499ea")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "bot token kalian")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "6750394970:AAHyVrRPtKgdOB8Jo74Rs08Wh3fkaFdjSe0")
 
-OWNER_ID = int(os.getenv("OWNER_ID", "id kalian"))
+OWNER_ID = int(os.getenv("OWNER_ID", "1757306905"))
 
-USER_ID = list(map(int, os.getenv("USER_ID", "id kalian").split()))
+USER_ID = list(map(int, os.getenv("USER_ID", "1757306905").split()))
 
-LOG_UBOT = int(os.getenv("LOG_UBOT", "- id gc log")) #contoh -123456789
+LOG_UBOT = int(os.getenv("LOG_UBOT", "-1002003800097")) #contoh -123456789
 
-LOG_SELLER = int(os.getenv("LOG_SELLER", "- id gc log seller")) #contoh -123456789
+LOG_SELLER = int(os.getenv("LOG_SELLER", "-1002078982723")) #contoh -123456789
 
-BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-1001608847572 -1001538826310 -1001876092598 -1001864253073 -1001451642443 -1001825363971 -1001797285258 -1001927904459 -1001287188817 -1001812143750 -1001608701614 -1001473548283 -1001861414061").split()))
+BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-1002003800097 -1002078982723 -1001841041794 -1001781720956 -1002104344623").split()))
 
 MAX_BOT = int(os.getenv("MAX_BOT", "25"))
 
