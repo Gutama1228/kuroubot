@@ -10,7 +10,6 @@ DEVS = [
     1757306905, # Vynnnn
 ]
 
-KYNAN = list(map(int, os.getenv("KYNAN", "isi id kalian").split()))
 
 API_ID = int(os.getenv("API_ID", "api id kalian"))
 
