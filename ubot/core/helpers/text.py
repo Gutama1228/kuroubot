@@ -36,7 +36,7 @@ If you have already made a payment, please click the Create Userbot button.</b>
 
 <b>💳 Payment method:</b>
  <b>├──• Dana </b>
- <b>├─• <code>085718366690</code></b>
+ <b>├─• <code>081363365169</code></b>
 
 
 <b>🔖 Total price: Rp {total}.000</b>
@@ -66,7 +66,7 @@ You are no longer entitled to a refund.
 🆘 Support
 To get support, you can:
 • Contact the admin below
-• Support @KynanSupport on Telegram
+• Support @Basecampsupport on Telegram
 ⚠️ DO NOT contact Telegram Support or Bot Support to request te support
 👉🏻 Press the Continue button to confirm that you have
 read and accept these terms and continue
