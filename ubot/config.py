@@ -11,15 +11,15 @@ DEVS = [
 ]
 
 
-API_ID = int(os.getenv("API_ID", "28805535"))
+API_ID = int(os.getenv("API_ID", ""))
 
-API_HASH = os.getenv("API_HASH", "25c5b085046408ee8abee7773d7499ea")
+API_HASH = os.getenv("API_HASH", "")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "6509394065:AAH8mK9I2yL-2BS1PtJamx6yCNGLIwYRdd0")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
-OWNER_ID = int(os.getenv("OWNER_ID", "1757306905"))
+OWNER_ID = int(os.getenv("OWNER_ID", ""))
 
-USER_ID = list(map(int, os.getenv("USER_ID", "1757306905").split()))
+USER_ID = list(map(int, os.getenv("USER_ID", "").split()))
 
 LOG_UBOT = int(os.getenv("LOG_UBOT", "-1002003800097")) #contoh -123456789
 
