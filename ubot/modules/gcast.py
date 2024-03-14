@@ -24,6 +24,9 @@ __HELP__ = """
 async def _(client, message):
     await broadcast_group_cmd(client, message)
 
+@PY.UBOT("sgcast")
+async def _(client, message):
+    await continuous_broadcast(client, message)
 
 @PY.UBOT("ucast")
 async def _(client, message):
