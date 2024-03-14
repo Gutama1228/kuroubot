@@ -11,21 +11,21 @@ DEVS = [
 ]
 
 
-API_ID = int(os.getenv("API_ID", ""))
+API_ID = int(os.getenv("API_ID", " "))
 
-API_HASH = os.getenv("API_HASH", "")
+API_HASH = os.getenv("API_HASH", " ")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", " ")
 
-OWNER_ID = int(os.getenv("OWNER_ID", ""))
+OWNER_ID = int(os.getenv("OWNER_ID", " "))
 
-USER_ID = list(map(int, os.getenv("USER_ID", "").split()))
+USER_ID = list(map(int, os.getenv("USER_ID", " ").split()))
 
-LOG_UBOT = int(os.getenv("LOG_UBOT", "-1002003800097")) #contoh -123456789
+LOG_UBOT = int(os.getenv("LOG_UBOT", "-")) #contoh -123456789
 
-LOG_SELLER = int(os.getenv("LOG_SELLER", "-1002078982723")) #contoh -123456789
+LOG_SELLER = int(os.getenv("LOG_SELLER", "-")) #contoh -123456789
 
-BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-1002003800097 -1002078982723 -1001841041794 -1001781720956 -1002104344623").split()))
+BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-").split()))
 
 MAX_BOT = int(os.getenv("MAX_BOT", "25"))
 
@@ -38,5 +38,5 @@ OPENAI_KEY = os.getenv(
 
 MONGO_URL = os.getenv(
     "MONGO_URL",
-    "mongodb+srv://Kuro:Kuro@cluster0.8i68gfk.mongodb.net/?retryWrites=true&w=majority",
+    " ",
 )
