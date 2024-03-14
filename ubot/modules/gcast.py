@@ -33,7 +33,7 @@ async def _(client, message):
     await broadcast_users_cmd(client, message)
 
 
-@PY.UBOT("sgcast")
+@PY.UBOT("egcast")
 async def _(client, message):
     await cancel_broadcast(client, message)
 
