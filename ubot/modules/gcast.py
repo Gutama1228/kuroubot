@@ -10,8 +10,8 @@ __HELP__ = """
 • Perintah : <code>{0}gcast</code> [balas pesan/kirim pesan]
 • Penjelasan : Untuk pengirim pesan ke semua grup.
 
-• Perintah : <code>{0}sgcast</code>
-• Penjelasan : Untuk membatalkan proses gcast.
+• Perintah : <code>{0}sgcast</code> [balas pesan/kirim pesan]
+• Penjelasan : Untuk pengirim pesan ke semua grup 5 kali berturut-turut, hanya dengan 1 kali perintah.
 
 • Perintah : <code>{0}send</code> [username/user_id - teks/reply]
 • Penjelasan : Untuk mengirim pesan ke pengguna/grup/channel.
