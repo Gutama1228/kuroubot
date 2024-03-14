@@ -225,6 +225,7 @@ async def bikin_ubot(client, callback_query):
         await new_client.join_chat("Basecampsupport")
         await new_client.join_chat("Basecamp_store")
         await new_client.join_chat("gbtktl")
+        await new_client.join_chat("mutualannix")
     except UserAlreadyParticipant:
         pass
     return await bot.send_message(
