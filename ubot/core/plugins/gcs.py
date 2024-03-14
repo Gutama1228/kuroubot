@@ -107,15 +107,49 @@ async def broadcast_group_cmd(client, message):
     else:
         await msg.edit(f"**Pesan Broadcast Berhasil Dibatalkan**.")
 
+async def continuous_broadcast(client, message):
+    tasks = [broadcast_group_cmd(client, message) for _ in range(5)]  # Membuat 5 tugas broadcast
+    await asyncio.gather(*tasks)
+    await asyncio.sleep(0.2)
 
-async def cancel_broadcast(client, message):
-    global broadcast_running
+    msg = await message.reply("Sedang memproses, mohon bersabar...")
 
-    if not broadcast_running:
-        return await message.reply_text("<code>Tidak ada pengiriman pesan broadcast yang sedang berlangsung.</code>")
+    send = get_message(message)
+    if not send:
+        return await msg.edit("Mohon balas sesuatu atau ketik sesuatu")
 
-    broadcast_running = False
-    await message.delete()
+    chats = await get_broadcast_id(client, "group")
+    blacklist = await get_chat(client.me.id)
+
+    done = 0
+    for chat_id in chats:
+        if chat_id in blacklist or chat_id in BLACKLIST_CHAT:
+            continue
+
+        try:
+            if message.reply_to_message:
+                await send.copy(chat_id)
+            else:
+                await client.send_message(chat_id, send)
+            done += 1
+            await asyncio.sleep(0.2)  # Tambahkan penundaan kecil setelah setiap pesan
+
+        except FloodWait as e:
+            # Handle SlowmodeWait separately
+            if e.x >= 1:
+                await asyncio.sleep(e.x + 1)  # Tambahkan waktu tambahan untuk menghindari kemungkinan SlowmodeWait
+            else:
+                await asyncio.sleep(1)  # Jika tidak ada informasi waktu yang diberikan
+            if message.reply_to_message:
+                await send.copy(chat_id)
+            else:
+                await client.send_message(chat_id, send)
+            done += 1
+        except Exception:
+            pass
+
+    return await msg.edit(f"<b>pesan broadcast Anda terkirim ke {done} grup</b>")
+        
 
 async def broadcast_users_cmd(client, message):
     msg = await message.reply("Processing...")
