@@ -62,7 +62,6 @@ async def broadcast_group_cmd(client, message):
 broadcast_running = False
 
 async def broadcast_group_cmd(client, message):
-    global broadcast_running
 
     msg = await message.reply("Processing...", quote=True)
 
@@ -79,33 +78,27 @@ async def broadcast_group_cmd(client, message):
     failed = 0
     
     for chat_id in chats:
-
-        if not broadcast_running:
-            break
+        if chat_id in blacklist:
+            continue
+        elif chat_id in BLACKLIST_CHAT:
+            continue
+        try:
+            if message.reply_to_message:
+                await send.copy(chat_id)
+            else:
+                await client.send_message(chat_id, send)
+            await asyncio.sleep(0.2)
+            done += 1
+        except FloodWait:
+            continue
+        except SlowmodeWait:
+            continue
+        except Exception:
+            continue
+        except BaseException:
+            failed += 1
+    await msg.edit(f"**Successfully Sent Message To `{done}` Groups chat**.")
         
-        if chat_id not in blacklist and chat_id not in BLACKLIST_CHAT:
-            
-            try:
-                if message.reply_to_message:
-                    await send.copy(chat_id)
-                else:
-                    await client.send_message(chat_id, send)
-                done += 1
-                #await asyncio.sleep(2)
-            #except FloodWait as e:
-                #await asyncio.sleep(e.value)
-            #except SlowmodeWait as e:
-                #await asyncio.sleep(e.value)
-                
-            except Exception:
-                failed += 1
-
-    broadcast_running = False
-
-    if done > 0:
-        await msg.edit(f"**Successfully Sent Message To `{done}` Groups chat. Failed: `{failed}`**.")
-    else:
-        await msg.edit(f"**Pesan Broadcast Berhasil Dibatalkan**.")
 
 async def continuous_broadcast(client, message):
     tasks = [broadcast_group_cmd(client, message) for _ in range(5)]  # Membuat 5 tugas broadcast
