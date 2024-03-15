@@ -35,6 +35,7 @@ async def get_group_call(
     await eor(message, f"**No group call Found** {err_msg}")
     return False
 
+async def title_vctools(client, message):
 
 async def start_vctools(client, message):
     flags = " ".join(message.command[1:])
