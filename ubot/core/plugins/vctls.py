@@ -36,6 +36,14 @@ async def get_group_call(
     return False
 
 async def title_vctools(client, message):
+    title = event.pattern_match.group(1).strip()
+    if not title:
+        return await event.eor("Mohon masukkan judul obrolan suara yang valid.")
+    try:
+        await event.client(settitle(call=await get_call(event), title=title.strip()))
+        await event.eor(f"❏ **Judul Voice Chat**\n└ `{title}`.")
+    except Exception as ex:
+        await event.eor(f"Terjadi kesalahan: {ex}")
 
 async def start_vctools(client, message):
     flags = " ".join(message.command[1:])
