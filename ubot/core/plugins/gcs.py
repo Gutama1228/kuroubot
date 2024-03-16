@@ -5,36 +5,7 @@ from pyrogram.enums import ChatType
 
 from ubot import *
 
-"""
-async def broadcast_group_cmd(client, message):
-    msg = await message.reply("Processing...", quote=True)
-    blacklist = await get_chat(client.me.id)
-    done = 0
-    async for dialog in client.get_dialogs(limit=None):
-        if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
-            if message.reply_to_message:
-                send = message.reply_to_message
-            else:
-                if len(message.command) < 2:
-                    return await msg.edit(
-                        "Silakan balas ke pesan atau berikan pesan.")
-                else:
-                    send = message.text.split(None, 1)[1]
-            chat_id = dialog.chat.id
-            if chat_id not in blacklist and chat_id not in BLACKLIST_CHAT:
-                try:
-                    if message.reply_to_message:
-                        await send.copy(chat_id)
-                    else:
-                        await client.send_message(chat_id, send)
-                    done += 1
-                except Exception:
-                    pass
-                
-    return await msg.edit(f"**Successfully Sent Message To `{done}` Groups chat**.")
-"""
 
-broadcast_running = False
 
 async def broadcast_group_cmd(client, message):
 
