@@ -8,42 +8,43 @@ from ubot import *
 
 
 async def broadcast_group_cmd(client, message):
-
-    msg = await message.reply("Processing...", quote=True)
-
-    send = get_message(message)
-    if not send:
-        return await msg.edit("Silakan balas ke pesan atau berikan pesan.")
-
-    broadcast_running = True
-
-    chats = await get_broadcast_id(client, "group")
-    blacklist = await get_chat(client.me.id)
-
-    done = 0
+    sent = 0
     failed = 0
-    
-    for chat_id in chats:
-        if chat_id in blacklist:
-            continue
-        elif chat_id in BLACKLIST_CHAT:
-            continue
-        try:
+    msg = await message.reply("sᴇᴅᴀɴɢ ᴍᴇᴍᴘʀᴏsᴇs ᴍᴏʜᴏɴ ʙᴇʀsᴀʙᴀʀ")
+    async for dialog in client.get_dialogs(limit=None):
+        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
             if message.reply_to_message:
-                await send.copy(chat_id)
+                send = message.reply_to_message
             else:
-                await client.send_message(chat_id, send)
-            await asyncio.sleep(0.2)
-            done += 1
-        except FloodWait:
-            continue
-        except SlowmodeWait:
-            continue
-        except Exception:
-            continue
-        except BaseException:
-            failed += 1
-    await msg.edit(f"**Successfully Sent Message To `{done}` Groups chat**.")
+                if len(message.command) < 2:
+                    await msg.delete()
+                    return await message.reply("ᴍᴏʜᴏɴ ʙᴀʟᴀs sᴇsᴜᴀᴛᴜ ᴀᴛᴀᴜ ᴋᴇᴛɪᴋ sᴇsᴜᴀᴛᴜ")
+                else:
+                    send = message.text.split(None, 1)[1]
+            chat_id = dialog.chat.id
+            if chat_id not in await get_chat(client.me.id):
+                try:
+                    if message.reply_to_message:
+                        await send.copy(chat_id)
+                    else:
+                        if "~>" not in send:
+                            await client.send_message(chat_id, send)
+                        else:
+                            x = await client.get_inline_bot_results(
+                                bot.me.username, f"gcast_button {id(message)}"
+                            )
+                            await client.send_inline_bot_result(
+                                chat_id, x.query_id, x.results[0].id
+                            )
+                    sent += 1
+                    await asyncio.sleep(1)
+                except Exception:
+                    failed += 1
+                    pass
+                    #await asyncio.sleep(1)
+    return await message.reply(
+        f"<b>✅ ᴘᴇsᴀɴ ʙʀᴏᴀᴅᴄᴀsᴛ ᴀɴᴅᴀ ᴛᴇʀᴋɪʀɪᴍ ᴋᴇ {sent} ɢʀᴏᴜᴘ</b>"
+    )
         
 
 async def continuous_broadcast(client, message):
