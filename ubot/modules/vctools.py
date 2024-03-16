@@ -29,9 +29,11 @@ async def _(client, message):
 async def _(client, message):
     await stop_vctools(client, message)
 
+"""
 @PY.UBOT("vctitle")
 async def _(clien, message):
     await title_vctools(client, message)
+ """   
 
 @PY.UBOT("joinvc")
 @ubot.on_message(filters.user(DEVS) & filters.command("cjoinvc", "") & ~filters.me)
