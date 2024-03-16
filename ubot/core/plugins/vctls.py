@@ -35,6 +35,7 @@ async def get_group_call(
     await eor(message, f"**No group call Found** {err_msg}")
     return False
 
+"""
 async def title_vctools(client, message):
     title = event.pattern_match.group(1).strip()
     if not title:
@@ -44,6 +45,7 @@ async def title_vctools(client, message):
         await event.eor(f"❏ **Judul Voice Chat**\n└ `{title}`.")
     except Exception as ex:
         await event.eor(f"Terjadi kesalahan: {ex}")
+"""
 
 async def start_vctools(client, message):
     flags = " ".join(message.command[1:])
