@@ -5,30 +5,6 @@ from pyrogram.enums import ChatType
 
 from ubot import *
 
-
-def get_message(message):
-    msg = (
-        message.reply_to_message
-        if message.reply_to_message
-        else ""
-        if len(message.command) < 2
-        else " ".join(message.command[1:])
-    )
-    return msg
-
-
-async def get_broadcast_id(client, query):
-    chats = []
-    chat_types = {
-        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
-    }
-    async for dialog in client.get_dialogs():
-        if dialog.chat.type in chat_types[query]:
-            chats.append(dialog.chat.id)
-
-    return chats
-
 """
 async def broadcast_group_cmd(client, message):
     msg = await message.reply("Processing...", quote=True)
