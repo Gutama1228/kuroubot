@@ -9,42 +9,37 @@ from ubot import *
 
 async def broadcast_group_cmd(client, message):
     sent = 0
-    failed = 0
-    msg = await message.reply("sᴇᴅᴀɴɢ ᴍᴇᴍᴘʀᴏsᴇs ᴍᴏʜᴏɴ ʙᴇʀsᴀʙᴀʀ")
+    #failed = 0
+    user_id = client.me.id
+    msg = await message.reply("<code>Processing Global Broadcast...</code>")
+    list_blchat = await blacklisted_chats(user_id)
     async for dialog in client.get_dialogs(limit=None):
-        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
+        if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
             if message.reply_to_message:
                 send = message.reply_to_message
             else:
                 if len(message.command) < 2:
-                    await msg.delete()
-                    return await message.reply("ᴍᴏʜᴏɴ ʙᴀʟᴀs sᴇsᴜᴀᴛᴜ ᴀᴛᴀᴜ ᴋᴇᴛɪᴋ sᴇsᴜᴀᴛᴜ")
+                    return await message.edit(
+                        "<code>Berikan pesan atau balas pesan...</code>"
+                    )
                 else:
                     send = message.text.split(None, 1)[1]
             chat_id = dialog.chat.id
-            if chat_id not in await get_chat(client.me.id):
+            if chat_id not in list_blchat and chat_id not in BLACKLIST_CHAT:
                 try:
                     if message.reply_to_message:
                         await send.copy(chat_id)
                     else:
-                        if "~>" not in send:
-                            await client.send_message(chat_id, send)
-                        else:
-                            x = await client.get_inline_bot_results(
-                                bot.me.username, f"gcast_button {id(message)}"
-                            )
-                            await client.send_inline_bot_result(
-                                chat_id, x.query_id, x.results[0].id
-                            )
+                        await client.send_message(chat_id, send)
                     sent += 1
                     await asyncio.sleep(1)
                 except Exception:
-                    failed += 1
+                    #failed += 1
                     pass
                     #await asyncio.sleep(1)
-    return await message.reply(
-        f"<b>✅ ᴘᴇsᴀɴ ʙʀᴏᴀᴅᴄᴀsᴛ ᴀɴᴅᴀ ᴛᴇʀᴋɪʀɪᴍ ᴋᴇ {sent} ɢʀᴏᴜᴘ</b>"
-    )
+    return await msg.edit(f"**Successfully Sent Message To `{sent}` Groups chat**.")
+
+
         
 
 async def continuous_broadcast(client, message):
