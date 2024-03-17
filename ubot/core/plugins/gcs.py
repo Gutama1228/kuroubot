@@ -1,7 +1,10 @@
 import asyncio
 from gc import get_objects
 
+from pyrogram import *
 from pyrogram.enums import ChatType
+from pyrogram.errors import BadRequest
+from pyrogram.types import *
 
 from ubot import *
 
