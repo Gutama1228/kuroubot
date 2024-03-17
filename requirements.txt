@@ -17,7 +17,7 @@ pySmartDL
 html2text
 removebg
 aiofiles
-aiohttp
+aiohttp==3.9.3
 gpytranslate
 gtts
 telegraph
