@@ -1,46 +1,58 @@
 import asyncio
 from gc import get_objects
 
-from pyrogram import *
 from pyrogram.enums import ChatType
-from pyrogram.errors import BadRequest
-from pyrogram.types import *
+from pyrogram.errors.exceptions import *
 
 from ubot import *
 
 
 
 async def broadcast_group_cmd(client, message):
-    sent = 0
-    #failed = 0
-    user_id = client.me.id
-    msg = await message.reply("<code>Processing Global Broadcast...</code>")
-    list_blchat = await blacklisted_chats(user_id)
-    async for dialog in client.get_dialogs(limit=None):
-        if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
-            if message.reply_to_message:
-                send = message.reply_to_message
-            else:
-                if len(message.command) < 2:
-                    return await message.edit(
-                        "<code>Berikan pesan atau balas pesan...</code>"
-                    )
+    global broadcast_running
+
+    msg = await message.reply("Processing...", quote=True)
+
+    send = get_message(message)
+    if not send:
+        return await msg.edit("Silakan balas ke pesan atau berikan pesan.")
+
+    broadcast_running = True
+
+    chats = await get_broadcast_id(client, "group")
+    blacklist = await get_chat(client.me.id)
+
+    done = 0
+    failed = 0
+    
+    for chat_id in chats:
+
+        if not broadcast_running:
+            break
+        
+        if chat_id not in blacklist and chat_id not in BLACKLIST_CHAT:
+            
+            try:
+                if message.reply_to_message:
+                    await send.copy(chat_id)
                 else:
-                    send = message.text.split(None, 1)[1]
-            chat_id = dialog.chat.id
-            if chat_id not in list_blchat and chat_id not in BLACKLIST_CHAT:
-                try:
-                    if message.reply_to_message:
-                        await send.copy(chat_id)
-                    else:
-                        await client.send_message(chat_id, send)
-                    sent += 1
-                    await asyncio.sleep(1)
-                except Exception:
-                    #failed += 1
-                    pass
-                    #await asyncio.sleep(1)
-    return await msg.edit(f"**Successfully Sent Message To `{sent}` Groups chat**.")
+                    await client.send_message(chat_id, send)
+                done += 1
+                #await asyncio.sleep(2)
+            #except FloodWait as e:
+                #await asyncio.sleep(e.value)
+            #except SlowmodeWait as e:
+                #await asyncio.sleep(e.value)
+                
+            except Exception:
+                failed += 1
+
+    broadcast_running = False
+
+    if done > 0:
+        await msg.edit(f"**Successfully Sent Message To `{done}` Groups chat. Failed: `{failed}`**.")
+    else:
+        await msg.edit(f"**Pesan Broadcast Berhasil Dibatalkan karna akun lu jelek**.")
 
 
         
